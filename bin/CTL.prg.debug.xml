@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+<pcToLineNum>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="3" lineNum="10" pc="268435456" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="3" lineNum="11" pc="268435460" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="3" lineNum="12" pc="268435506" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="3" lineNum="15" pc="268435540" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="18" pc="268435607" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="19" pc="268435611" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="20" pc="268435643" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="21" pc="268435675" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="22" pc="268435707" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="23" pc="268435739" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="24" pc="268435771" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="25" pc="268435803" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLModel.mc" id="4" lineNum="27" pc="268435835" symbol="onSensor"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLController.mc" id="6" lineNum="4" pc="268435859" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLController.mc" id="6" lineNum="5" pc="268435863" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLMenuDelegate.mc" id="8" lineNum="6" pc="268435895" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLMenuDelegate.mc" id="8" lineNum="7" pc="268435899" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLMenuDelegate.mc" id="9" lineNum="10" pc="268435918" symbol="onMenuItem"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLMenuDelegate.mc" id="9" lineNum="11" pc="268435922" symbol="onMenuItem"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLMenuDelegate.mc" id="9" lineNum="12" pc="268435933" symbol="onMenuItem"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLMenuDelegate.mc" id="9" lineNum="13" pc="268435957" symbol="onMenuItem"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLMenuDelegate.mc" id="9" lineNum="14" pc="268435968" symbol="onMenuItem"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLApp.mc" id="11" lineNum="9" pc="268435993" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLApp.mc" id="11" lineNum="10" pc="268435997" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLApp.mc" id="11" lineNum="11" pc="268436015" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLApp.mc" id="11" lineNum="12" pc="268436049" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLApp.mc" id="12" lineNum="16" pc="268436084" symbol="onStart"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLApp.mc" id="13" lineNum="20" pc="268436089" symbol="onStop"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLApp.mc" id="14" lineNum="24" pc="268436094" symbol="getInitialView"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLApp.mc" id="14" lineNum="25" pc="268436098" symbol="getInitialView"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLDelegate.mc" id="16" lineNum="7" pc="268436166" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLDelegate.mc" id="16" lineNum="8" pc="268436170" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLDelegate.mc" id="16" lineNum="9" pc="268436188" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLDelegate.mc" id="17" lineNum="12" pc="268436220" symbol="onMenu"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLDelegate.mc" id="17" lineNum="13" pc="268436224" symbol="onMenu"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLDelegate.mc" id="17" lineNum="14" pc="268436308" symbol="onMenu"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLView.mc" id="19" lineNum="5" pc="268436312" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLView.mc" id="19" lineNum="6" pc="268436316" symbol="initialize"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLView.mc" id="20" lineNum="10" pc="268436335" symbol="onLayout"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLView.mc" id="20" lineNum="11" pc="268436339" symbol="onLayout"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLView.mc" id="21" lineNum="17" pc="268436377" symbol="onShow"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLView.mc" id="22" lineNum="21" pc="268436382" symbol="onUpdate"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLView.mc" id="22" lineNum="23" pc="268436386" symbol="onUpdate"/>
+<entry filename="C:\\Users\\Eik\\eclipse-workspace\\CTL\\source\\CTLView.mc" id="23" lineNum="29" pc="268436407" symbol="onHide"/>
+<entry filename="Rez" id="29" lineNum="16" pc="268436412" symbol="initialize"/>
+<entry filename="Rez" id="29" lineNum="17" pc="268436416" symbol="initialize"/>
+<entry filename="Rez" id="29" lineNum="18" pc="268436434" symbol="initialize"/>
+<entry filename="Rez" id="29" lineNum="19" pc="268436486" symbol="initialize"/>
+<entry filename="Rez" id="32" lineNum="36" pc="268436539" symbol="MainLayout"/>
+<entry filename="Rez" id="32" lineNum="40" pc="268436551" symbol="MainLayout"/>
+<entry filename="Rez" id="32" lineNum="41" pc="268436722" symbol="MainLayout"/>
+<entry filename="Rez" id="32" lineNum="42" pc="268436755" symbol="MainLayout"/>
+<entry filename="Rez" id="32" lineNum="45" pc="268436807" symbol="MainLayout"/>
+</pcToLineNum>
+<symbolTable>
+<entry id="8388644" module="true" symbol="System"/>
+<entry field="true" id="33" symbol="model"/>
+<entry field="true" id="26" symbol="mTimer"/>
+<entry id="8389124" method="true" symbol="onUpdate"/>
+<entry id="8389349" symbol="justification"/>
+<entry field="true" id="31" symbol="mEnvironmentSensor"/>
+<entry id="14" object="true" symbol="CTLView"/>
+<entry field="true" id="34" symbol="controller"/>
+<entry field="true" id="8388611" module="true" symbol="Toybox"/>
+<entry id="20" object="true" symbol="MainMenu"/>
+<entry id="8388770" module="true" object="true" symbol="Strings"/>
+<entry field="true" id="30" symbol="mZones"/>
+<entry id="8389280" method="true" symbol="getInitialView"/>
+<entry id="8388639" module="true" symbol="Graphics"/>
+<entry id="21" method="true" symbol="MainLayout"/>
+<entry id="32" method="true" symbol="onSensor"/>
+<entry id="8388769" module="true" object="true" symbol="Rez"/>
+<entry id="8389123" method="true" symbol="onShow"/>
+<entry id="10" object="true" symbol="CTLController"/>
+<entry id="12" object="true" symbol="CTLApp"/>
+<entry id="8388702" method="true" symbol="initialize"/>
+<entry field="true" id="25" symbol="AppName"/>
+<entry id="11" object="true" symbol="CTLMenuDelegate"/>
+<entry id="13" object="true" symbol="CTLDelegate"/>
+<entry id="8388890" symbol="sport"/>
+<entry field="true" id="8388892" symbol="name"/>
+<entry id="8389080" method="true" symbol="onMenu"/>
+<entry id="36" symbol="item_2"/>
+<entry id="35" symbol="item_1"/>
+<entry field="true" id="19" symbol="LauncherIcon"/>
+<entry field="true" id="23" symbol="menu_label_2"/>
+<entry field="true" id="22" symbol="menu_label_1"/>
+<entry id="8388648" module="true" symbol="WatchUi"/>
+<entry id="8389281" method="true" symbol="onStop"/>
+<entry field="true" id="8389065" symbol="locY"/>
+<entry field="true" id="8389064" symbol="locX"/>
+<entry id="8388771" module="true" object="true" symbol="Drawables"/>
+<entry id="8389122" method="true" symbol="onLayout"/>
+<entry field="true" id="27" symbol="mSession"/>
+<entry id="8389279" method="true" symbol="onStart"/>
+<entry id="8389348" symbol="font"/>
+<entry id="8389347" symbol="color"/>
+<entry id="8389109" method="true" symbol="onMenuItem"/>
+<entry field="true" id="15" symbol="mModel"/>
+<entry id="18" module="true" symbol="Layouts"/>
+<entry field="true" id="24" symbol="prompt"/>
+<entry field="true" id="16" symbol="mController"/>
+<entry id="8389125" method="true" symbol="onHide"/>
+<entry field="true" id="29" symbol="mSampleCounter"/>
+<entry id="8390088" module="true" object="true" symbol="JsonData"/>
+<entry id="8389346" symbol="text"/>
+<entry id="9" object="true" symbol="CTLModel"/>
+<entry field="true" id="28" symbol="mSamples"/>
+<entry id="17" module="true" symbol="Menus"/>
+<entry id="8388772" module="true" object="true" symbol="Fonts"/>
+<entry id="8388635" module="true" symbol="Application"/>
+</symbolTable>
+<localVars>
+<entry endPc="268435859" name="sensorInfo" stackId="1" startPc="268435607"/>
+<entry endPc="268435993" name="item" stackId="1" startPc="268435918"/>
+<entry endPc="268436089" name="state" stackId="1" startPc="268436084"/>
+<entry endPc="268436094" name="state" stackId="1" startPc="268436089"/>
+<entry endPc="268436377" name="dc" stackId="1" startPc="268436335"/>
+<entry endPc="268436407" name="dc" stackId="1" startPc="268436382"/>
+<entry endPc="268436824" name="rez_cmp_local_bitmap_8911114833_fontHeight" stackId="3" startPc="268436551"/>
+<entry endPc="268436824" name="rez_cmp_local_bitmap_8911114833" stackId="2" startPc="268436551"/>
+<entry endPc="268436825" name="dc" stackId="1" startPc="268436539"/>
+</localVars>
+<annotations/>
+<functions>
+<functionEntry accessMode="public" name="initialize" parent="CTLModel">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onSensor" parent="CTLModel">
+<param id="sensorInfo"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="CTLController">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="CTLMenuDelegate">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onMenuItem" parent="CTLMenuDelegate">
+<param id="item"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="CTLApp">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStart" parent="CTLApp">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStop" parent="CTLApp">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="getInitialView" parent="CTLApp">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="CTLDelegate">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onMenu" parent="CTLDelegate">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="CTLView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onLayout" parent="CTLView">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onShow" parent="CTLView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onUpdate" parent="CTLView">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onHide" parent="CTLView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="MainMenu">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="MainLayout" parent="Layouts">
+<param id="dc"/>
+<documentation><![CDATA[<div class="description"> Draw the layout<br/> param The context<br/></div>]]></documentation>
+</functionEntry>
+</functions>
+<dataEntryOffsetMappings>
+<dataEntry offset="87" parentId="" symbolId="globals" type="module"/>
+<dataEntry offset="230" parentId="globals" symbolId="CTLController" type="class"/>
+<dataEntry offset="285" parentId="globals" symbolId="CTLDelegate" type="class"/>
+<dataEntry offset="348" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry offset="427" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry offset="466" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry offset="505" parentId="Menus" symbolId="MainMenu" type="class"/>
+<dataEntry offset="552" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry offset="583" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry offset="614" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry offset="653" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry offset="716" parentId="globals" symbolId="CTLModel" type="class"/>
+<dataEntry offset="819" parentId="globals" symbolId="CTLApp" type="class"/>
+<dataEntry offset="906" parentId="globals" symbolId="CTLMenuDelegate" type="class"/>
+<dataEntry offset="961" parentId="globals" symbolId="CTLView" type="class"/>
+</dataEntryOffsetMappings>
+</debugInfo>

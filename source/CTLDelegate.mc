@@ -10,8 +10,13 @@ class CTLDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function onMenu() {
-        WatchUi.pushView(new Rez.Menus.MainMenu(), new CTLMenuDelegate(), WatchUi.SLIDE_UP);
+        // WatchUi.pushView(new Rez.Menus.MainMenu(), new CTLMenuDelegate(), WatchUi.SLIDE_UP);
         return true;
+    }
+    
+    function onSelect() {
+    	mController.startStop();
+    	return true;
     }
 
 }

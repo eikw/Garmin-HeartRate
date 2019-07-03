@@ -1,6 +1,7 @@
 package com.example.garmin_heartrate.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -27,6 +28,7 @@ import java.util.List;
 public class UserFragment extends Fragment {
 
     private static final String KEY_USER_ID = "user_id";
+    public static final int  CONNCET_DEVICE_REQUEST_CODE = 1;
 
     private FragmentUserBinding mBinding;
 
@@ -36,6 +38,14 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false);
+
+        mBinding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ConnectDevice.class);
+                startActivityForResult(intent, CONNCET_DEVICE_REQUEST_CODE);
+            }
+        });
 
         mSessionAdapter = new SessionAdapter(mSessionClickCallback);
         mBinding.userList.setAdapter(mSessionAdapter);

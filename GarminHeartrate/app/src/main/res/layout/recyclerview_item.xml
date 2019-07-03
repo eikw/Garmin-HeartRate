@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="user"
+            type="com.example.garmin_heartrate.db.entity.User"/>
+        <variable name="callback"
+            type="com.example.garmin_heartrate.ui.UserClickCallback"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:onClick="@{() -> callback.onClick(user)}"
+        android:orientation="horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Name"
+                android:text="@{user.fullName}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:text="@{Integer.toString(user.age)}"/>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

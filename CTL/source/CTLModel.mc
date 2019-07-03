@@ -5,6 +5,7 @@ using Toybox.Attention;
 using Toybox.FitContributor;
 using Toybox.ActivityRecording;
 using Toybox.Timer;
+using Toybox.Communications as Comm;
 
 class CTLModel {
 	hidden var mTimer;
@@ -36,6 +37,15 @@ class CTLModel {
     
     	System.println( "--------------------" );
     	
+    	var reading = {
+    		"speed" => sensorInfo.speed,
+    		"heartRate" => sensorInfo.heartRate,
+    		"cadence" => sensorInfo.cadence,
+    		"temperature" => sensorInfo.temperature,
+    		"altitude" => sensorInfo.altitude,
+    		"pressure" => sensorInfo.pressure,
+    		"heading" => sensorInfo.heading
+     	};
     	currentReading = sensorInfo;
     	// System.println(getTime());
     	// System.println(sensorInfo);
@@ -57,13 +67,41 @@ class CTLModel {
 		isReadingSensor = false;
 		mTimer.stop();
 		mSession.stop();
+		System.println(mSensorData);
+    	var values = mSensorData.values();
+		var data = new [mSensorData.size()];
+		for(var i=0; i < mSensorData.size(); i++) {
+			data[i] = {
+				"heartRate" => values[i].heartRate,
+    			"speed" => values[i].speed,
+    			"cadence" => values[i].cadence,
+    			"temperature" => values[i].temperature,
+    			"altitude" => values[i].altitude,
+    			"pressure" => values[i].pressure,
+    			"heading" => values[i].heading
+			};
+		}
+		var message = {
+			"CURRENT_SESSION" => data
+		};
+		Comm.transmit(message, null, new CTLCommListener(method(:onTransmitComplete)));
+		
 	}
+	
+	 function onTransmitComplete(status) {
+        if (status == CTLCommListener.SUCCESS) {
+            System.println("send sucessfull");
+        } else {
+            System.println("send failure");
+        }
+    }
 	
 	function getcurrentSensorData() {
 		return mSensorData;
 	}
 	
 	function measure() {
+		System.println(currentReading);
 		mSensorData.put(mSeconds, currentReading);
 		mSeconds++;
 	}
@@ -75,4 +113,29 @@ class CTLModel {
 	function saveSession() {
 		mSession.save();
 	}
+}
+
+//! Handles communication feedback for the RoundView
+class CTLCommListener extends Comm.ConnectionListener
+{
+    static var SUCCESS = 0;
+    static var FAILURE = 1;
+
+    hidden var mCallback;
+
+    //! Constructor
+    //! @param callback The method to call on a result
+    function initialize(callback) {
+    	mCallback = callback;
+    }
+
+    //! Call the callback with a result of RoundViewCommListener.SUCCESS
+    function onComplete() {
+        mCallback.invoke(SUCCESS);
+    }
+
+    //! Call the callback with a result of RoundViewCommListener.FAILURE
+    function onError() {
+        mCallback.invoke(FAILURE);
+    }
 }

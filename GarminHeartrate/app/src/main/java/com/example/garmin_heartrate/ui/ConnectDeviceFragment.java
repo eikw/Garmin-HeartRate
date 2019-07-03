@@ -66,6 +66,7 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
         mStatusText = view.findViewById(R.id.device_status);
 
         mMyApp = new IQApp(WatchConnectionInfo.APP_ID);
+        Log.i(TAG,"Status: " + mMyApp.getStatus().toString());
         mConnectIQ = ConnectIQ.getInstance(this.getContext(), ConnectIQ.IQConnectType.TETHERED);
         mConnectIQ.initialize(this.getContext(), true, this);
 
@@ -81,7 +82,7 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
 
     private void populateDeviceList() {
         try {
-            mDevices = mConnectIQ.getConnectedDevices();
+            mDevices = mConnectIQ.getKnownDevices();
 
             if (mDevices != null && !mDevices.isEmpty()) {
                 mDevice = mDevices.get(0);
@@ -179,7 +180,8 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
                 } else if (o instanceof HashMap) {
                     try {
                         @SuppressWarnings("rawtypes")
-                        Object scorecardDto = ((HashMap) o).get(KEY_MESSAGE_PAYLOAD);
+                        Object readingDto = ((HashMap) o).get("CURRENT_SESSION");
+
 
                         // TODO add own implementation for data handling, parse data, launch result activity
 

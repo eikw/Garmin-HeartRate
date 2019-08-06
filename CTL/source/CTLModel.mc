@@ -12,6 +12,8 @@ class CTLModel {
 	hidden var mSession;
 	hidden var mSeconds;
 	hidden var currentReading;
+	hidden var startTime;
+	hidden var endTime;
     
 	var mSensorData;
 	var isReadingSensor;
@@ -56,6 +58,7 @@ class CTLModel {
 		Sensor.enableSensorEvents( method( :onSensor ) );
 		isReadingSensor = true;
 		
+		startTime = Time.now();
 		mTimer = new Timer.Timer();
         // Process the sensors at 4 Hz
         mTimer.start(method(:measure), 1000, true);
@@ -67,8 +70,11 @@ class CTLModel {
 		isReadingSensor = false;
 		mTimer.stop();
 		mSession.stop();
+		endTime = Time.now();
+		
 		System.println(mSensorData);
     	var values = mSensorData.values();
+    	var keys = mSensorData.keys();
 		var data = new [mSensorData.size()];
 		for(var i=0; i < mSensorData.size(); i++) {
 			data[i] = {
@@ -78,12 +84,18 @@ class CTLModel {
     			"temperature" => values[i].temperature,
     			"altitude" => values[i].altitude,
     			"pressure" => values[i].pressure,
-    			"heading" => values[i].heading
+    			"heading" => values[i].heading,
+    			"timestamp" => keys[i]
 			};
 		}
+		
 		var message = {
-			"CURRENT_SESSION" => data
+			"CURRENT_SESSION" => data,
+			"START_TIME" => startTime.value(),
+			"END_TIME" => endTime.value()
 		};
+		
+		System.println(message);
 		Comm.transmit(message, null, new CTLCommListener(method(:onTransmitComplete)));
 		
 	}
@@ -102,7 +114,7 @@ class CTLModel {
 	
 	function measure() {
 		System.println(currentReading);
-		mSensorData.put(mSeconds, currentReading);
+		mSensorData.put(Time.now().value(), currentReading);
 		mSeconds++;
 	}
 	

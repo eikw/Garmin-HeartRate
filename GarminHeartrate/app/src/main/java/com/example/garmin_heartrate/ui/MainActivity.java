@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.garmin_heartrate.BasicApp;
 import com.example.garmin_heartrate.DataRepository;
 import com.example.garmin_heartrate.R;
+import com.example.garmin_heartrate.db.entity.Session;
 import com.example.garmin_heartrate.viewModel.UserListViewModel;
 import com.example.garmin_heartrate.db.entity.User;
 import com.example.garmin_heartrate.viewModel.UserViewModel;
@@ -41,15 +42,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, fragment, UserListFragment.TAG).commit();
         }
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewUserActivity.class);
-                startActivityForResult(intent, NEW_USER_ACTIVITY_REQUEST_CODE);
-            }
-        });
     }
 
     @Override
@@ -83,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack("user")
                 .replace(R.id.fragment_container,
                         userFragment, null).commit();
+    }
+
+    public void show(Session session) {
+        SessionFragment sessionFragment = SessionFragment.forSession(session.getId());
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack("session")
+                .replace(R.id.fragment_container,
+                        sessionFragment, null).commit();
     }
 
     public void create() {

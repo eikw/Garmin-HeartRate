@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
 
     @NonNull
@@ -37,7 +38,8 @@ public class User implements Serializable {
     @ColumnInfo(name = "age")
     private int mAge;
 
-    public User(@NonNull String firstName, @NonNull String lastName, @NonNull double height, @NonNull double weight, @NonNull int age) {
+    public User(int id, @NonNull String firstName, @NonNull String lastName, @NonNull double height, @NonNull double weight, @NonNull int age) {
+        this.id = id;
         this.mFirstName = firstName;
         this.mLastName = lastName;
         this.setFullName(this.mFirstName + ' ' + this.mLastName);

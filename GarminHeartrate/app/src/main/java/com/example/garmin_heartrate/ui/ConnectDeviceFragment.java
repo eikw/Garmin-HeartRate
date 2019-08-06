@@ -21,8 +21,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.garmin_heartrate.BasicApp;
+import com.example.garmin_heartrate.DataRepository;
 import com.example.garmin_heartrate.R;
 import com.example.garmin_heartrate.connectivity.WatchConnectionInfo;
+import com.example.garmin_heartrate.db.entity.FitReading;
+import com.example.garmin_heartrate.db.entity.Session;
 import com.example.garmin_heartrate.viewModel.ConnectDeviceViewModel;
 import com.garmin.android.connectiq.ConnectIQ;
 import com.garmin.android.connectiq.IQApp;
@@ -31,6 +35,7 @@ import com.garmin.android.connectiq.exception.InvalidStateException;
 import com.garmin.android.connectiq.exception.ServiceUnavailableException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,6 +43,8 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
 
     public static final String TAG = ConnectDeviceFragment.class.getSimpleName();
     public static final int KEY_MESSAGE_PAYLOAD = -2;
+    public static final String KEY_USER_ID = "user_id";
+    public static final String KEY_SESSION_ID = "session_id";
 
     private ConnectDeviceViewModel mViewModel;
 
@@ -45,11 +52,23 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
     private TextView mStatusText;
     private Button mSaveButton;
 
+    private int mUserId;
+    private int mSessionId;
+
     private boolean mSdkReady;
     private ConnectIQ mConnectIQ;
     private List<IQDevice> mDevices;
     private IQDevice mDevice;
     private IQApp mMyApp;
+
+    public static ConnectDeviceFragment newSession (int userId) {
+        ConnectDeviceFragment fragment = new ConnectDeviceFragment();
+        Bundle args = new Bundle();
+        args.putInt(KEY_USER_ID, userId);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     public static ConnectDeviceFragment newInstance() {
         return new ConnectDeviceFragment();
@@ -76,8 +95,16 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ConnectDeviceViewModel.class);
-        // TODO: Use the ViewModel
+
+        ConnectDeviceViewModel.Factory factory = new ConnectDeviceViewModel.Factory(
+                getActivity().getApplication());
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            mUserId = bundle.getInt(KEY_USER_ID);
+        }
+
+        mViewModel = ViewModelProviders.of(this, factory).get(ConnectDeviceViewModel.class);
     }
 
     private void populateDeviceList() {
@@ -174,16 +201,49 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
         StringBuilder builder = new StringBuilder();
 
         if (list.size() > 0) {
-            for (Object o : list) {
+            for (Object o : list)
                 if (o == null) {
                     builder.append("<null> received");
                 } else if (o instanceof HashMap) {
                     try {
                         @SuppressWarnings("rawtypes")
-                        Object readingDto = ((HashMap) o).get("CURRENT_SESSION");
+                        ArrayList<Object> readingDto = (ArrayList<Object>) ((HashMap) o).get("CURRENT_SESSION");
+                        int startTime = (int) ((HashMap) o).get("START_TIME");
+                        int endTime = (int) ((HashMap) o).get("END_TIME");
 
+                        Date end = new Date(new Long(endTime)*1000);
+                        Date start = new Date(new Long(startTime)*1000);
+                        Session session = new Session(0,mUserId,start, end);
 
-                        // TODO add own implementation for data handling, parse data, launch result activity
+                        List<FitReading> reading = new ArrayList<>();
+                        if (readingDto != null) {
+                            for (Object element: readingDto) {
+
+                                float altitude = (float) ((HashMap) element).get("altitude");
+                                int heartRate = (int) ((HashMap) element).get("heartRate");
+                                float speed = (float) ((HashMap) element).get("speed");
+                                int cadence = (int) ((HashMap) element).get("cadence");
+                                float temperature = (float) ((HashMap) element).get("temperature");
+                                float pressure = (float) ((HashMap) element).get("pressure");
+                                float heading = (float) ((HashMap) element).get("heading");
+                                int timeStamp = (int) ((HashMap) element).get("timestamp");
+                                Date time = new Date(new Long(timeStamp)*1000);
+                                reading.add(
+                                        new FitReading(
+                                                0,
+                                                0,
+                                                time,
+                                                speed,
+                                                cadence,
+                                                heartRate,
+                                                temperature,
+                                                altitude,
+                                                pressure,
+                                                heading));
+                            }
+
+                            mViewModel.insertSession(session, reading);
+                        }
 
                         builder = null;
                     } catch (Exception ex) {
@@ -195,7 +255,6 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
                     builder.append(o.toString());
                     builder.append("\r\n");
                 }
-            }
         } else {
             builder.append("Received an empty message from the application");
         }

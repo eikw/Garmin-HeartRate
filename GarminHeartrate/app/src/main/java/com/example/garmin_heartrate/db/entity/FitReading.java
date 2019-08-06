@@ -1,5 +1,7 @@
 package com.example.garmin_heartrate.db.entity;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
@@ -10,26 +12,46 @@ import com.example.garmin_heartrate.db.entity.Session;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity(tableName = "reading_table",
-        foreignKeys = {
-                @ForeignKey(entity = Session.class,
-                        parentColumns = "id",
-                        childColumns = "sessionId",
-                        onDelete = ForeignKey.CASCADE)},
-        indices = {@Index(value = "sessionId")
-        })
+@Entity(tableName = "reading_table")
 public class FitReading implements Serializable {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
 
+    @NonNull
+    @ColumnInfo(name = "sessionId")
     private int sessionId;
+
+    @NonNull
+    @ColumnInfo(name = "timeStamp")
     private Date timestamp;
+
+    @NonNull
+    @ColumnInfo(name = "speed")
     private double speed;
+
+    @NonNull
+    @ColumnInfo(name = "cadence")
     private double cadence;
+
+    @NonNull
+    @ColumnInfo(name = "heartRate")
     private double heartRate;
+
+    @NonNull
+    @ColumnInfo(name = "temperature")
     private double temperature;
+
+    @NonNull
+    @ColumnInfo(name = "altitude")
     private double altitude;
+
+    @NonNull
+    @ColumnInfo(name = "pressure")
     private double pressure;
+
+    @NonNull
+    @ColumnInfo(name = "heading")
     private double heading;
 
     public int getId() {
@@ -112,7 +134,7 @@ public class FitReading implements Serializable {
         this.heading = heading;
     }
 
-    public FitReading(int id, int sessionId, Date timestamp, double speed, double cadence, double heartRate, double temperature, double altitude, double pressure, double heading) {
+    public FitReading(int id, @NonNull int sessionId, @NonNull Date timestamp, @NonNull double speed, @NonNull double cadence, @NonNull double heartRate, @NonNull double temperature, @NonNull double altitude, @NonNull double pressure, @NonNull double heading) {
         this.id = id;
         this.sessionId = sessionId;
         this.timestamp = timestamp;

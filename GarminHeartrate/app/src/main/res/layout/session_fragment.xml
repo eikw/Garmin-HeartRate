@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="android.view.View"/>
+
         <variable
             name="isLoading"
             type="boolean" />
+
+        <variable
+            name="sessionViewModel"
+            type="com.example.garmin_heartrate.viewModel.SessionViewModel"/>
     </data>
 
     <LinearLayout
@@ -14,30 +22,21 @@
         android:background="@color/cardview_light_background"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/add_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/add_user" />
+        <include layout="@layout/session_detail_item"
+            app:session="@{sessionViewModel.session}" />
 
-        <TextView
-            android:id="@+id/loading_tv"
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="@string/loading_user"
-            android:textAlignment="center"
-            app:visibleGone="@{isLoading}" />
+            android:layout_height="match_parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/users_list"
+            android:id="@+id/reading_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:layoutManager="LinearLayoutManager"
             app:visibleGone="@{!isLoading}" />
 
     </LinearLayout>
-
 
 </layout>

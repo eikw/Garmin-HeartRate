@@ -45,4 +45,7 @@ dependencies {
 // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

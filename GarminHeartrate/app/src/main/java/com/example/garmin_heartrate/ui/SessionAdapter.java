@@ -64,6 +64,20 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
             diffResult.dispatchUpdatesTo(this);
         }
     }
+    @Nullable
+    public int getLatestSessionId() {
+        if (mSessionList.isEmpty()) {
+            return 0;
+        } else {
+            int count = 0;
+            for(Session session: mSessionList) {
+                if(session.getId() > count) {
+                    count = session.getId();
+                }
+            }
+            return count;
+        }
+    }
 
     @Override
     public SessionViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {

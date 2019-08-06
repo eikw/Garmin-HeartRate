@@ -12,6 +12,9 @@ import java.util.List;
 @Dao
 public interface SessionDao {
 
+    @Query("SELECT * FROM session_table WHERE id = :sessionId")
+    LiveData<Session> loadSession(int sessionId);
+
     @Query("SELECT * FROM session_table WHERE userId = :userId")
     LiveData<List<Session>> loadSessions(int userId);
 
@@ -19,5 +22,5 @@ public interface SessionDao {
     List<Session> loadSessionSync(int userId);
 
     @Insert
-    void insert(Session session);
+    long insert(Session session);
 }

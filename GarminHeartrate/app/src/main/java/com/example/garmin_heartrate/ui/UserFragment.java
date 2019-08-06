@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -28,7 +30,10 @@ import java.util.List;
 public class UserFragment extends Fragment {
 
     private static final String KEY_USER_ID = "user_id";
+    private static final String KEY_SESSION_ID = "session_id";
     public static final int  CONNCET_DEVICE_REQUEST_CODE = 1;
+
+    private UserViewModel mModel;
 
     private FragmentUserBinding mBinding;
 
@@ -42,8 +47,15 @@ public class UserFragment extends Fragment {
         mBinding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ConnectDevice.class);
-                startActivityForResult(intent, CONNCET_DEVICE_REQUEST_CODE);
+                int userId =  mModel.user.get().getId();
+                ConnectDeviceFragment fragment = ConnectDeviceFragment.newSession(userId);
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack("session")
+                        .replace(R.id.fragment_container,
+                                fragment, null).commit();
+
             }
         });
 
@@ -55,7 +67,9 @@ public class UserFragment extends Fragment {
     private final SessionClickCallback mSessionClickCallback = new SessionClickCallback() {
         @Override
         public void onClick(Session session) {
-            // TODO
+            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                ((MainActivity) getActivity()).show(session);
+            }
         }
     };
 
@@ -66,11 +80,11 @@ public class UserFragment extends Fragment {
         UserViewModel.Factory factory = new UserViewModel.Factory(
                 getActivity().getApplication(), getArguments().getInt(KEY_USER_ID));
 
-        final UserViewModel model = ViewModelProviders.of(this, factory).get(UserViewModel.class);
+        mModel = ViewModelProviders.of(this, factory).get(UserViewModel.class);
 
-        mBinding.setUserViewModel(model);
+        mBinding.setUserViewModel(mModel);
 
-        subscribeToModel(model);
+        subscribeToModel(mModel);
     }
 
     private void subscribeToModel(final UserViewModel model) {

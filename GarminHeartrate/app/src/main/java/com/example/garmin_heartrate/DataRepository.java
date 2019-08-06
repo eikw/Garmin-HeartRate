@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
 import com.example.garmin_heartrate.db.AppRoomDatabase;
+import com.example.garmin_heartrate.db.dao.FitReadingDao;
+import com.example.garmin_heartrate.db.dao.SessionDao;
 import com.example.garmin_heartrate.db.dao.UserDao;
 import com.example.garmin_heartrate.db.entity.FitReading;
 import com.example.garmin_heartrate.db.entity.Session;
@@ -52,8 +54,22 @@ public class DataRepository {
         return mDatabase.userDao().loadUser(userId);
     }
 
+    public void createSession(Session session, List<FitReading> readings) {
+        SessionObject dto = new SessionObject(session, readings);
+        new InsertSessionAsyncTask(mDatabase.sessionDao(), mDatabase.readingDao()).execute(dto);
+    }
+
+    public LiveData<Session> loadSession(final int sessionId) {
+        return mDatabase.sessionDao().loadSession(sessionId);
+    }
+
+
     public LiveData<List<Session>> loadSessions(final int userId) {
         return mDatabase.sessionDao().loadSessions(userId);
+    }
+
+    public void saveReading(FitReading reading)  {
+        new InsertReadingsAsyncTask(mDatabase.readingDao()).execute(reading);
     }
 
     public LiveData<List<FitReading>> loadReadings(final int sessionId) {
@@ -71,6 +87,52 @@ public class DataRepository {
         protected Void doInBackground(User... users) {
             userDao.insert(users[0]);
             return null;
+        }
+    }
+
+    private class InsertSessionAsyncTask extends AsyncTask<SessionObject, Void, Void> {
+        private SessionDao sessionDao;
+        private FitReadingDao readingDao;
+
+        private InsertSessionAsyncTask(SessionDao sessionDao, FitReadingDao readingDao) {
+            this.sessionDao = sessionDao;
+            this.readingDao = readingDao;
+        }
+
+        @Override
+        protected Void doInBackground(SessionObject... sessions) {
+            long result = sessionDao.insert(sessions[0].session);
+            for (FitReading reading:sessions[0].readings) {
+                reading.setSessionId((int)result);
+                readingDao.insert(reading);
+            }
+            return null;
+        }
+    }
+
+    private static class InsertReadingsAsyncTask extends AsyncTask<FitReading, Void, Void> {
+        private FitReadingDao readingDao;
+
+        private InsertReadingsAsyncTask(FitReadingDao readingDao) {
+            this.readingDao = readingDao;
+        }
+
+        @Override
+        protected Void doInBackground(FitReading... fitReadings) {
+            for (FitReading reading: fitReadings) {
+                readingDao.insert(reading);
+            }
+            return null;
+        }
+    }
+
+    private class SessionObject {
+        Session session;
+        List<FitReading> readings;
+
+        SessionObject(Session session, List<FitReading> readings) {
+            this.session = session;
+            this.readings = readings;
         }
     }
 }

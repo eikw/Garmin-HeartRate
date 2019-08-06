@@ -1,9 +1,11 @@
 package com.example.garmin_heartrate.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -17,12 +19,14 @@ import com.example.garmin_heartrate.R;
 import com.example.garmin_heartrate.db.entity.User;
 import com.example.garmin_heartrate.viewModel.UserListViewModel;
 import com.example.garmin_heartrate.databinding.FragmentUserListBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 public class UserListFragment extends Fragment {
 
     public static final String TAG = "UserListFragment";
+    public static final int NEW_USER_ACTIVITY_REQUEST_CODE = 1;
 
     private UserAdapter mUserAdapter;
 
@@ -36,6 +40,16 @@ public class UserListFragment extends Fragment {
 
         mUserAdapter = new UserAdapter(mUserClickCallback);
         mBinding.usersList.setAdapter(mUserAdapter);
+
+        Button fab = mBinding.addUser;
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NewUserActivity.class);
+                startActivityForResult(intent, NEW_USER_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
         return mBinding.getRoot();
     }
 

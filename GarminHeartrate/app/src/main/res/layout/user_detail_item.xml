@@ -36,26 +36,6 @@
                 android:text="@{user.fullName}"/>
 
             <TextView
-                android:id="@+id/detail_firstName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:text="@{user.firstName}"/>
-
-            <TextView
-                android:id="@+id/detail_lastName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:text="@{user.lastName}"/>
-
-            <TextView
                 android:id="@+id/detail_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

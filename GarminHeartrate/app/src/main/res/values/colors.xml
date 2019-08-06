@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="buttonLabel">#d3d3d3</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="blue">#0000FF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="pink">#FF00FF</color>
 </resources>

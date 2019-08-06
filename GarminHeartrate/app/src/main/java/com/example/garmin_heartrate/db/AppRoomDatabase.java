@@ -20,7 +20,7 @@ import com.example.garmin_heartrate.db.entity.FitReading;
 import com.example.garmin_heartrate.db.entity.Session;
 import com.example.garmin_heartrate.db.entity.User;
 
-@Database(entities = {User.class, Session.class, FitReading.class}, version = 1)
+@Database(entities = {User.class, Session.class, FitReading.class}, version = 2)
 @TypeConverters(DateConverter.class)
 public abstract class AppRoomDatabase extends RoomDatabase {
     public abstract UserDao userDao();

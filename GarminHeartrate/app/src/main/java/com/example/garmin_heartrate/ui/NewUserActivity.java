@@ -46,7 +46,7 @@ public class NewUserActivity extends AppCompatActivity {
                 double height = Double.parseDouble(mEditHeightView.getText().toString());
                 int age = Integer.parseInt(mEditAgeView.getText().toString());
 
-                User user = new User(firstName, lastName, height, weight, age);
+                User user = new User(0, firstName, lastName, height, weight, age);
 
                 createIntent.putExtra(EXTRA_CREATE, user);
                 setResult(RESULT_OK, createIntent);

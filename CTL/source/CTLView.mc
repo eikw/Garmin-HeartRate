@@ -43,7 +43,7 @@ class CTLView extends Ui.View {
     		for( var i = 0; i < measure.size(); i++ ) {
     			System.println("key "+ i + " : " + keys[i].toString());
     			System.println("Value "+ i + " : " + values[i].heartRate);
-    			text = keys[i].toString() + " - " + values[i].heartRate.toString();
+    			text = i.toString() + " - " + values[i].heartRate.toString();
 			}
 			mLabel.setText( text );
     	} else {

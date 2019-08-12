@@ -28,14 +28,16 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reading_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layoutManager="LinearLayoutManager"
-            app:visibleGone="@{!isLoading}" />
+            app:visibleGone="@{!isLoading}"
+            android:layout_weight="2"/>
 
     </LinearLayout>
 

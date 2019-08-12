@@ -43,7 +43,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="@{Integer.toString(user.age)}"/>
+                android:text="@{@string/format_age(Integer.toString(user.age))}"/>
 
             <TextView
                 android:id="@+id/detail_height"
@@ -53,7 +53,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="@{String.valueOf(user.height)}"/>
+                android:text="@{@string/format_height(String.valueOf(user.height))}"/>
 
             <TextView
                 android:id="@+id/detail_weight"
@@ -63,7 +63,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="@{String.valueOf(user.weight)}"/>
+                android:text="@{@string/format_weight(String.valueOf(user.weight))}"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

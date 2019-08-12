@@ -9,6 +9,7 @@ class CTLView extends Ui.View {
     hidden var mLabel;
     hidden var mTimer;
     hidden var mPrompt;
+    hidden var mCounter;
     
     function initialize() {
         View.initialize();
@@ -18,6 +19,7 @@ class CTLView extends Ui.View {
         mPrompt = Ui.loadResource(Rez.Strings.prompt);
         mLabel = null;
         mTimer = new Timer.Timer();
+        mCounter = 0;
     }
 
     // Load your resources here
@@ -36,16 +38,27 @@ class CTLView extends Ui.View {
     // Update the view
     function onUpdate(dc) {
     	if(mController.isRunning()) {
+    		/*
     		var measure = mController.getCurrentSession();
     		var keys = measure.keys();
     		var values = measure.values();
-    		var text = "";
+    		
     		for( var i = 0; i < measure.size(); i++ ) {
     			System.println("key "+ i + " : " + keys[i].toString());
     			System.println("Value "+ i + " : " + values[i].heartRate);
     			text = i.toString() + " - " + values[i].heartRate.toString();
 			}
+			*/
+			var text = "Measuring.";
+			for( var i = 0; i < mCounter; i++ ) {
+				text = text + '.';
+			}
 			mLabel.setText( text );
+			if(mCounter == 2) {
+				mCounter = 0;
+			} else {
+				mCounter++;
+			}
     	} else {
     		mLabel.setText( mPrompt );
     	}

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,10 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
     private Spinner mDeviceList;
     private TextView mStatusText;
     private Button mSaveButton;
+    private TextView mReadings;
+
+    private Session mSession;
+    private List<FitReading> mReadingData;
 
     private int mUserId;
     private int mSessionId;
@@ -83,6 +88,17 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
         mDeviceList = view.findViewById(R.id.device_list);
         mSaveButton = view.findViewById(R.id.device_button_save);
         mStatusText = view.findViewById(R.id.device_status);
+        mReadings = view.findViewById(R.id.readings);
+        mReadings.setMovementMethod(new ScrollingMovementMethod());
+
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewModel.insertSession(mSession, mReadingData);
+                getFragmentManager().popBackStack();
+            }
+        });
+
 
         mMyApp = new IQApp(WatchConnectionInfo.APP_ID);
         Log.i(TAG,"Status: " + mMyApp.getStatus().toString());
@@ -206,6 +222,7 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
                     builder.append("<null> received");
                 } else if (o instanceof HashMap) {
                     try {
+                        mReadings.setText("");
                         @SuppressWarnings("rawtypes")
                         ArrayList<Object> readingDto = (ArrayList<Object>) ((HashMap) o).get("CURRENT_SESSION");
                         int startTime = (int) ((HashMap) o).get("START_TIME");
@@ -213,9 +230,9 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
 
                         Date end = new Date(new Long(endTime)*1000);
                         Date start = new Date(new Long(startTime)*1000);
-                        Session session = new Session(0,mUserId,start, end);
+                        mSession = new Session(0,mUserId,start, end);
 
-                        List<FitReading> reading = new ArrayList<>();
+                        mReadingData = new ArrayList<>();
                         if (readingDto != null) {
                             for (Object element: readingDto) {
 
@@ -228,7 +245,7 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
                                 float heading = (float) ((HashMap) element).get("heading");
                                 int timeStamp = (int) ((HashMap) element).get("timestamp");
                                 Date time = new Date(new Long(timeStamp)*1000);
-                                reading.add(
+                                mReadingData.add(
                                         new FitReading(
                                                 0,
                                                 0,
@@ -240,9 +257,18 @@ public class ConnectDeviceFragment extends Fragment implements ConnectIQ.Connect
                                                 altitude,
                                                 pressure,
                                                 heading));
+                                mReadings.append("Time: " +  time.toString() + "\n");
+                                mReadings.append("Speed: " +  speed + " m/s\n");
+                                mReadings.append("Cadence: " +  cadence + " rpm\n");
+                                mReadings.append("HeartRate: " +  heartRate + " bpm\n");
+                                mReadings.append("Temperature: " +  temperature + " °C\n");
+                                mReadings.append("Altitude: " +  altitude + " m\n");
+                                mReadings.append("Pressure: " +  pressure + " Pa\n");
+                                mReadings.append("Heading: " +  heading + " °\n");
+                                mReadings.append("------------------------------\n");
+
                             }
 
-                            mViewModel.insertSession(session, reading);
                         }
 
                         builder = null;

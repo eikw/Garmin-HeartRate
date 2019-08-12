@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.garmin_heartrate.BasicApp;
+import com.example.garmin_heartrate.DataRepository;
 import com.example.garmin_heartrate.R;
 import com.example.garmin_heartrate.db.entity.User;
 import com.example.garmin_heartrate.viewModel.UserListViewModel;
@@ -23,13 +26,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 public class UserListFragment extends Fragment {
 
     public static final String TAG = "UserListFragment";
     public static final int NEW_USER_ACTIVITY_REQUEST_CODE = 1;
 
     private UserAdapter mUserAdapter;
-
+    private UserListViewModel mViewModel;
     private FragmentUserListBinding mBinding;
 
     @Nullable
@@ -57,9 +62,30 @@ public class UserListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        final UserListViewModel viewModel = ViewModelProviders.of(this).get(UserListViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(UserListViewModel.class);
 
-        subscribeUi(viewModel.getAllUsers());
+        subscribeUi(mViewModel.getAllUsers());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_USER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            User user = (User)data.getSerializableExtra(NewUserActivity.EXTRA_CREATE);
+            mViewModel.insert(user);
+
+            Toast.makeText(getActivity(),
+                    user.getFullName(),
+                    Toast.LENGTH_LONG
+            ).show();
+        } else {
+            Toast.makeText(
+                    getActivity(),
+                    R.string.empty_not_saved,
+                    Toast.LENGTH_LONG
+            ).show();
+        }
     }
 
     private void subscribeUi(LiveData<List<User>> liveData) {

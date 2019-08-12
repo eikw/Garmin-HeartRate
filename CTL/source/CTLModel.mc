@@ -21,10 +21,6 @@ class CTLModel {
 	
 	function initialize() {
 		Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE]);
-        // Sensor.enableSensorEvents( method( :onSensor ) );
-        mSensorData = {};
-        mSeconds = 0;
-        // Create a new FIT recording session
         mSession = ActivityRecording.createSession({:sport=>ActivityRecording.SPORT_GENERIC, :name=>"Generic"});        
 	}
 	
@@ -49,9 +45,6 @@ class CTLModel {
     		"heading" => sensorInfo.heading
      	};
     	currentReading = sensorInfo;
-    	// System.println(getTime());
-    	// System.println(sensorInfo);
-    	// mSensorData.put(getTime().toString(),sensorInfo);
 	}
 	
 	function startMeasure() {
@@ -60,7 +53,9 @@ class CTLModel {
 		
 		startTime = Time.now();
 		mTimer = new Timer.Timer();
-        // Process the sensors at 4 Hz
+		mSensorData = {};
+		mSeconds = 0;
+		// measure every second
         mTimer.start(method(:measure), 1000, true);
         mSession.start();
 	}
